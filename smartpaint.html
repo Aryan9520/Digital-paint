@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL PAINT</title>
+
+    <style>
+        body {
+            border: 1px solid black;
+            min-height: 100vh;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #heading {
+            font-family: serif;
+            font-size: 70px;
+            color: blueviolet;
+            text-shadow: 2px 3px 5px black;
+        }
+
+        #heading-p {
+            font-family: serif;
+            text-shadow: 2px 3px 5px black;
+            color: black;
+            font-size: 25px;
+        }
+
+        #paintbox {
+            height: 400px;
+            width: 400px;
+            border: 1px solid black;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        #download-button {
+            height: 50px;
+            width: 200px;
+            border: 1px solid black;
+            border-radius: 8px;
+            background-color: red;
+            color: black;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+
+        }
+        
+
+        #bg-color button {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 1px solid black;
+        }
+
+        #bg-color button:hover {
+            cursor: pointer;
+        }
+        #text-color button {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+#text-color button:hover {
+    cursor: pointer;
+}
+#second {
+    width: 100%;
+    text-align: center;
+}
+
+#text-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#text-style button {
+    padding: 12px 25px;
+    font-size: 25px;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+
+    <h1 id="heading">Textora</h1>
+
+    <p id="heading-p">Edit Your Thoughts Freely</p>
+
+    <div id="paintbox" contenteditable="true">
+        Type your text here.........
+    </div>
+
+    <br><br>
+
+    <button id="download-button" onclick="downloadText()">
+        Download
+    </button>
+
+    <div id="main">
+        <div id="first">
+
+            <h1>Choose Your Background Color</h1>
+
+            <div id="bg-color">
+                <button onclick="BgColor('blue')" style="background-color: blue;"></button>
+                <button onclick="BgColor('green')" style="background-color: green;"></button>
+                <button onclick="BgColor('red')" style="background-color: red;"></button>
+                <button onclick="BgColor('black')" style="background-color: black;"></button>
+                <button onclick="BgColor('white')" style="background-color: white;"></button>
+                <button onclick="BgColor('yellow')" style="background-color: yellow;"></button>
+                <button onclick="BgColor('pink')" style="background-color: pink;"></button>
+            </div>
+             <div id="first">
+
+            <h1>Choose Your Text Color</h1>
+
+          <div id="text-color">
+    <button onclick="TextColor('blue')" style="background-color: blue;"></button>
+    <button onclick="TextColor('green')" style="background-color: green;"></button>
+    <button onclick="TextColor('red')" style="background-color: red;"></button>
+    <button onclick="TextColor('black')" style="background-color: black;"></button>
+    <button onclick="TextColor('white')" style="background-color: white;"></button>
+    <button onclick="TextColor('yellow')" style="background-color: yellow;"></button>
+    <button onclick="TextColor('pink')" style="background-color: pink;"></button>
+</div>
+        </div>
+    </div>
+ <div id="second">
+    <h1>Choose your Text Style</h1>
+
+    <div id="text-style">
+        <button onclick="TextStyle('cursive')" style="font-family: cursive;">Hello</button>
+        <button onclick="TextStyle('serif')" style="font-family: serif;">Hello</button>
+        <button onclick="TextStyle('sans-serif')" style="font-family: sans-serif;">Hello</button>
+        <button onclick="TextStyle('monospace')" style="font-family: monospace;">Hello</button>
+        <button onclick="TextStyle('fantasy')" style="font-family: fantasy;">Hello</button>
+        <button onclick="TextStyle('system-ui')" style="font-family: system-ui;">Hello</button>
+    </div>
+</div>
+
+    <script>
+
+        // Background Color Change
+        function BgColor(color) {
+            document.getElementById("paintbox").style.backgroundColor = color;
+        }
+
+        // Download Text
+        function downloadText() {
+
+            let text = document.getElementById("paintbox").innerText;
+
+            let blob = new Blob([text], { type: "text/plain" });
+
+            let link = document.createElement("a");
+
+            link.href = URL.createObjectURL(blob);
+
+            link.download = "Textora.txt";
+
+            link.click();
+
+            URL.revokeObjectURL(link.href);
+        }
+        function TextColor(color) {
+    document.getElementById("paintbox").style.color = color;
+}
+function TextStyle(style) {
+    document.getElementById("paintbox").style.fontFamily = style;
+}
+    </script>
+
+</body>
+</html
